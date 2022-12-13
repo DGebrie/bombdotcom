@@ -1,47 +1,62 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-// import ListCard from "./ListCard";
+import RecipeCard from "./RecipeCard";
+import { Splide } from "@splidejs/react-splide";
+import styled from "styled-components";
+import "@splidejs/react-splide/css";
 
 function Popular() {
-  // const [popular, setPopular] = useState([]);
+  const [popular, setPopular] = useState([]);
 
-  // useEffect(() => {
-  //   getPopular();
-  // }, []);
+  const Wrapper = styled.div`
+    margin: 4rem 0rem;
+  `;
 
-  // const getPopular = async () => {
-  //   const api = await fetch(
-  //     `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-  //   );
-  //   const data = await api.json();
-  //   setPopular(data.recipes);
-  //   console.log(data.recipes);
-  // };
+  useEffect(() => {
+    getPopular();
+    // console.log("Effect");
+  }, []);
+
+  const getPopular = async () => {
+    const check = localStorage.getItem("popular");
+
+    if (check) {
+      setPopular(JSON.parse(check));
+    } else {
+      const api = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
+      );
+      const data = await api.json();
+
+      localStorage.setItem("popular", JSON.stringify(data.recipes));
+      setPopular(data.recipes);
+      console.log(data.recipes);
+    }
+  };
 
   return (
-    <div className="justify-content-between row">
-      {/* {popular.map((recipe) => {
-        return ( */}
-          <div className="col">
-            {/* <ListCard curRecipe={recipe} /> */}
-
-            <div className="card m-3" style={{ width: 300, height: 300 }}>
-              <img src=""
-              // {recipe.image} 
-              className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h5 className="card-title">
-                  <a href="#" className="black">
-                    {/* {recipe.title} */}
-                    TITLE
-                  </a>
-                </h5>
-              </div>
-            </div>
-          </div>
-        {/* );
-      })} */}
+    <div className="">
+      <Wrapper>
+        <h3>Popular Picks</h3>
+        <Splide
+          aria-label="Popular Recipes"
+          options={{
+            perPage: 4,
+            gap: "5rem",
+            pagination: false,
+            drag: true,
+          }}
+        >
+          {popular.map((recipe) => {
+            return (
+              <>
+                <RecipeCard recipe={recipe} />;
+              </>
+            );
+          })}
+        </Splide>
+      </Wrapper>
     </div>
   );
 }

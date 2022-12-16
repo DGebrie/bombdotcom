@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 import { Splide } from "@splidejs/react-splide";
 import styled from "styled-components";
@@ -8,10 +9,6 @@ import "@splidejs/react-splide/css";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
-
-  const Wrapper = styled.div`
-    margin: 4rem 0rem;
-  `;
 
   useEffect(() => {
     getPopular();
@@ -37,28 +34,27 @@ function Popular() {
 
   return (
     <div className="">
-      <Wrapper>
-        <h3>Popular Picks</h3>
-        <Splide
-          aria-label="Popular Recipes"
-          options={{
-            perPage: 4,
-            gap: "5rem",
-            pagination: false,
-            drag: true,
-          }}
-        >
-          {popular.map((recipe) => {
-            return (
-              <>
-                <RecipeCard recipe={recipe} />;
-              </>
-            );
-          })}
-        </Splide>
-      </Wrapper>
+      {/* <Wrapper> */}
+      <h3>Popular Picks</h3>
+      <Splide
+        aria-label="Popular Recipes"
+        options={{
+          perPage: 4,
+          gap: "5rem",
+          pagination: false,
+          drag: true,
+        }}
+      >
+        {popular.map((recipe) => {
+          return <RecipeCard recipe={recipe} key={recipe.id} />;
+        })}
+      </Splide>
+      {/* </Wrapper> */}
     </div>
   );
 }
 
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+`;
 export default Popular;

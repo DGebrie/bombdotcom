@@ -9,10 +9,6 @@ import "@splidejs/react-splide/css";
 function Veggie(recipe) {
   const [veggie, setVeggie] = useState([]);
 
-  const Wrapper = styled.div`
-    margin: 4rem 0rem;
-  `;
-
   useEffect(() => {
     getVeggie();
     console.log("Effect");
@@ -52,16 +48,16 @@ function Veggie(recipe) {
           }}
         >
           {veggie.map((recipe) => {
-            return (
-              <>
-                <RecipeCard recipe={recipe} />;
-              </>
-            );
+            return <RecipeCard recipe={recipe} key={recipe.id} />;
           })}
         </Splide>
       </Wrapper>
     </div>
   );
 }
+
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+`;
 
 export default Veggie;

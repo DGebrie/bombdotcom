@@ -30,25 +30,35 @@ function Veggie(recipe) {
     }
   };
   return (
-    <div className="">
-      <Wrapper>
-        <h3 style={{ fontWeight: 900 }}>Our Vegetarian Picks</h3>
-        <Splide
-          aria-label="Popular Recipes"
-          options={{
-            perPage: 3,
-            gap: "5rem",
-            // arrows: false,
-            pagination: false,
-            drag: "free",
-          }}
-        >
-          {veggie.map((recipe) => {
-            return <RecipeCard recipe={recipe} key={recipe.id} />;
-          })}
-        </Splide>
-      </Wrapper>
-    </div>
+    // <div className="">
+    <Wrapper>
+      <h3 style={{ fontWeight: 900 }}>Our Vegetarian Picks</h3>
+      <Splide
+        aria-label="Popular Recipes"
+        options={{
+          perPage: 3,
+          gap: "5rem",
+          breakpoints: {
+            // 500: {
+            //   perPage: 1,
+            // },
+            768: {
+              perPage: 1,
+            },
+            960: {
+              perPage: 2,
+            },
+          },
+          pagination: false,
+          drag: "free",
+        }}
+      >
+        {veggie.map((recipe) => {
+          return <RecipeCard recipe={recipe} key={recipe.id} />;
+        })}
+      </Splide>
+    </Wrapper>
+    // </div>
   );
 }
 

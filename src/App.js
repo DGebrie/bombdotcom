@@ -12,7 +12,7 @@ function App() {
         <Nav>
           <Logo to={"/"}>
             <GiCook />
-            Taste Buds
+            taste buds
           </Logo>
         </Nav>
         <Search />

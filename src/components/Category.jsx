@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const Category = () => {
   return (
-    <List>
+    <div className="d-flex justify-content-center mx-2 my-0">
       <SLink to={"/cuisine/Italian"}>
         <FaPizzaSlice />
         <h4>Italian</h4>
@@ -23,15 +23,9 @@ const Category = () => {
         <GiNoodles />
         <h4>Thai</h4>
       </SLink>
-    </List>
+    </div>
   );
 };
-
-const List = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0rem;
-`;
 
 const SLink = styled(NavLink)`
   display: flex;
@@ -39,7 +33,7 @@ const SLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  margin-right: 2rem;
+  margin-top: 2rem;
   text-decoration: none;
   background: linear-gradient(35deg, #494949, #313131);
   width: 6rem;

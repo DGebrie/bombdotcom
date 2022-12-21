@@ -43,7 +43,7 @@ const Search = () => {
     //   </button>
     // </form>
 
-    <div class="row mt-5" onSubmit={submitHandler}>
+    <form class="row mt-5" onSubmit={submitHandler}>
       <div class="col-md-5 mx-auto">
         <div class="input-group">
           <input
@@ -62,21 +62,21 @@ const Search = () => {
               text: "white",
             }}
           />
-          <span class="input-group-append">
+          <span className="input-group-append">
             <button
               style={{
                 backgroundColor: "#313131",
                 color: "white",
               }}
-              class="btn border-start-0 "
-              type="button"
+              className="btn border-start-0 "
+              type="submit"
             >
               <FaSearch />
             </button>
           </span>
         </div>
       </div>
-    </div>
+    </form>
     // <FormStyle onSubmit={submitHandler}>
     //   <div>
     //     <FaSearch />

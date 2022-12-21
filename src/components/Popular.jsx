@@ -47,7 +47,7 @@ function Popular() {
               768: {
                 perPage: 2,
               },
-              960: {
+              992: {
                 perPage: 3,
               },
             },

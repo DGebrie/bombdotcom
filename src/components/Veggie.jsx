@@ -43,7 +43,7 @@ function Veggie(recipe) {
               768: {
                 perPage: 1,
               },
-              960: {
+              992: {
                 perPage: 2,
               },
             },

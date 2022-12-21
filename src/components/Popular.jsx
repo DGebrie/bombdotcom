@@ -33,35 +33,45 @@ function Popular() {
   };
 
   return (
-    <div className="">
-      {/* <Wrapper> */}
-      <h3>Popular Picks</h3>
-      <Splide
-        aria-label="Popular Recipes"
-        options={{
-          perPage: 4,
-          gap: "5rem",
-          pagination: false,
-          drag: true,
-          breakpoints: {
-            500: {
-              perPage: 1,
+    <>
+      <div className="d-none d-md-block">
+        <h3>Popular Picks</h3>
+        <Splide
+          aria-label="Popular Recipes"
+          options={{
+            perPage: 4,
+            gap: "5rem",
+            pagination: false,
+            drag: true,
+            breakpoints: {
+              768: {
+                perPage: 2,
+              },
+              960: {
+                perPage: 3,
+              },
             },
-            768: {
-              perPage: 2,
-            },
-            960: {
-              perPage: 3,
-            },
-          },
-        }}
-      >
-        {popular.map((recipe) => {
-          return <RecipeCard recipe={recipe} key={recipe.id} />;
+          }}
+        >
+          {popular.map((recipe) => {
+            return <RecipeCard recipe={recipe} key={recipe.id} />;
+          })}
+        </Splide>
+      </div>
+      <div className="d-block d-md-none">
+        <h3 className="text-center" style={{ fontWeight: 900 }}>
+          Popular Picks
+        </h3>
+        {popular.map((recipe, i) => {
+          if (i < 3) {
+            return <RecipeCard recipe={recipe} key={recipe.id} />;
+          }
         })}
-      </Splide>
-      {/* </Wrapper> */}
-    </div>
+        {/* <p>
+          <Link>See more Popular recipes...</Link>
+        </p> */}
+      </div>
+    </>
   );
 }
 

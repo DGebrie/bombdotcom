@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import RecipeCard from "./RecipeCard";
@@ -30,40 +31,47 @@ function Veggie(recipe) {
     }
   };
   return (
-    // <div className="">
-    <Wrapper>
-      <h3 style={{ fontWeight: 900 }}>Our Vegetarian Picks</h3>
-      <Splide
-        aria-label="Popular Recipes"
-        options={{
-          perPage: 3,
-          gap: "5rem",
-          breakpoints: {
-            // 500: {
-            //   perPage: 1,
-            // },
-            768: {
-              perPage: 1,
+    <>
+      <div className="d-none d-md-block">
+        <h3 style={{ fontWeight: 900 }}>Our Vegetarian Picks</h3>
+        <Splide
+          aria-label="Popular Recipes"
+          options={{
+            perPage: 3,
+            gap: "5rem",
+            breakpoints: {
+              768: {
+                perPage: 1,
+              },
+              960: {
+                perPage: 2,
+              },
             },
-            960: {
-              perPage: 2,
-            },
-          },
-          pagination: false,
-          drag: "free",
-        }}
-      >
-        {veggie.map((recipe) => {
-          return <RecipeCard recipe={recipe} key={recipe.id} />;
+            pagination: false,
+            drag: "free",
+          }}
+        >
+          {veggie.map((recipe) => {
+            return <RecipeCard recipe={recipe} key={recipe.id} />;
+          })}
+        </Splide>
+      </div>
+      <div className="d-block d-md-none">
+        <h3 className="text-center" style={{ fontWeight: 900 }}>
+          Our Vegetarian Picks
+        </h3>
+        {veggie.map((recipe, i) => {
+          if (i < 2) {
+            // return i;
+            return <RecipeCard recipe={recipe} key={recipe.id} />;
+          }
         })}
-      </Splide>
-    </Wrapper>
-    // </div>
+        {/* <p>
+          <Link>See more Vegeterian recipes...</Link>
+        </p> */}
+      </div>
+    </>
   );
 }
-
-const Wrapper = styled.div`
-  margin: 4rem 0rem;
-`;
 
 export default Veggie;

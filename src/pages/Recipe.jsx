@@ -63,53 +63,61 @@ const Recipe = () => {
         </DetailWrapper>
       </div>
       <div className="d-block d-xl-none">
-        <div>
-          <h2 className="text-center mt-5">{details.title}</h2>
-          <img
-            src={details.image}
-            alt={details.title}
-            className="rounded img-fluid"
-          />
-        </div>
-        <p
-          className="mt-4"
-          dangerouslySetInnerHTML={{ __html: details.summary }}
-        ></p>
-        <div className="d-flex justify-content-center my-4">
-          <Button
-            className={activeTab === "instructions" ? "active" : ""}
-            onClick={() => setActiveTab("instructions")}
-          >
-            Instructions
-          </Button>
-          <Button
-            className={activeTab === "ingredients" ? "active" : ""}
-            onClick={() => setActiveTab("ingredients")}
-          >
-            Ingredients
-          </Button>
-        </div>
-        <div>
-          {activeTab === "instructions" && (
-            <div>
-              <p
-                className="mt-4"
-                dangerouslySetInnerHTML={{ __html: details.instructions }}
-              ></p>
-            </div>
-          )}
-          {activeTab === "ingredients" && (
-            <ul>
-              {details.extendedIngredients.map((ingredient) => (
-                <li key={ingredient.id}>{ingredient.original}</li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <MobileWrapper>
+          <div>
+            <h2 className="text-center mt-5">{details.title}</h2>
+            <img
+              src={details.image}
+              alt={details.title}
+              className="rounded img-fluid"
+            />
+          </div>
+          <p
+            className="mt-4"
+            dangerouslySetInnerHTML={{ __html: details.summary }}
+          ></p>
+          <div className="d-flex justify-content-center my-4">
+            <Button
+              className={activeTab === "instructions" ? "active" : ""}
+              onClick={() => setActiveTab("instructions")}
+            >
+              Instructions
+            </Button>
+            <Button
+              className={activeTab === "ingredients" ? "active" : ""}
+              onClick={() => setActiveTab("ingredients")}
+            >
+              Ingredients
+            </Button>
+          </div>
+          <div>
+            {activeTab === "instructions" && (
+              <div>
+                <p
+                  className="mt-4"
+                  dangerouslySetInnerHTML={{ __html: details.instructions }}
+                ></p>
+              </div>
+            )}
+            {activeTab === "ingredients" && (
+              <ul>
+                {details.extendedIngredients.map((ingredient) => (
+                  <li key={ingredient.id}>{ingredient.original}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </MobileWrapper>
       </div>
     </>
   );
 };
+const MobileWrapper = styled.div`
+  .active {
+    background: #313131;
+    color: white;
+  }
+`;
 
 const DetailWrapper = styled.div`
   margin-top: 10rem;

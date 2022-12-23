@@ -63,14 +63,7 @@ const Search = () => {
             }}
           />
           <span className="input-group-append">
-            <button
-              style={{
-                backgroundColor: "#313131",
-                color: "white",
-              }}
-              className="btn border-start-0 "
-              type="submit"
-            >
+            <button className="btn border-start-0 " type="submit">
               <FaSearch />
             </button>
           </span>
